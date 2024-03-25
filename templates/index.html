@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    html {
+      height: 100%;
+      background: linear-gradient(to bottom right, #ff9999, #99ccff); /* Gradient background */
+      font-family: 'Arimo', sans-serif; /* Use Arimo font */
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+    }
+    body {
+      margin: 0; /* Reset body margin */
+      padding: 0; /* Reset body padding */
+      min-height: 100%; /* Ensure body fills the entire viewport */
+    }
+    .login {
+      background: #fff; /* White background for login container */
+      padding: 20px;
+      width: 300px;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Add shadow */
+    }
+    h1 {
+      font-family: 'Pacifico', cursive; /* Use Pacifico font for heading */
+      text-align: center;
+      color: #333; /* Dark gray color for heading */
+    }
+    form input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      box-sizing: border-box;
+      transition: background-color 0.3s; /* Add transition effect */
+    }
+    /* Unique and dynamic colors for text boxes */
+    form input[name="Sepal_Length"] {
+      background-color: #ffcccc; /* Light red */
+    }
+    form input[name="Sepal_Width"] {
+      background-color: #ccffcc; /* Light green */
+    }
+    form input[name="Petal_Length"] {
+      background-color: #ccccff; /* Light blue */
+    }
+    form input[name="Petal_Width"] {
+      background-color: #ffffcc; /* Light yellow */
+    }
+    form input[type="text"]:focus {
+      background-color: #f0f0f0; /* Light gray when focused */
+    }
+    button {
+      width: 100%;
+      background-color: #4CAF50; /* Green */
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s; /* Add transition effect */
+    }
+    button:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+  </style>
+</head>
+<body>
+ <div class="login">
+	<h1>Flower Class Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+    	<input type="text" name="Sepal_Length" placeholder="Sepal_Length" required="required" />
+        <input type="text" name="Sepal_Width" placeholder="Sepal_Width" required="required" />
+		<input type="text" name="Petal_Length" placeholder="Petal_Length" required="required" />
+		<input type="text" name="Petal_Width" placeholder="Petal_Width" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+</body>
+</html>
